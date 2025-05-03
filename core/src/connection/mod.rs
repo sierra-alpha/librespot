@@ -63,7 +63,7 @@ impl From<APLoginFailed> for AuthenticationError {
 }
 
 pub async fn connect(host: &str, port: u16, proxy: Option<&Url>) -> io::Result<Transport> {
-    const TIMEOUT: Duration = Duration::from_secs(5);
+    const TIMEOUT: Duration = Duration::from_secs(12);
     tokio::time::timeout(TIMEOUT, {
         let socket = crate::socket::connect(host, port, proxy).await?;
         debug!("Connection to AP established.");
